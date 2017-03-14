@@ -1,12 +1,12 @@
 ---
 - hosts: control
   roles: 
-    - { role: common }
+    - { role: common, become: yes }
 
 - hosts: database
   roles: 
-    - { role: common }
-    - { role: mongodb }
+    - { role: common, become: yes }
+    - { role: mongodb, become: yes }
   
 - hosts: appserver
   tasks:
