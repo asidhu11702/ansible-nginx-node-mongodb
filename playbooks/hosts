@@ -1,8 +1,8 @@
 [appserver]
-localhost ansible_connection=local 
+appVm[1-2]
 
 [database]
-localhost ansible_connection=local 
+dbVm1
 
 [control]
 localhost ansible_connection=local 

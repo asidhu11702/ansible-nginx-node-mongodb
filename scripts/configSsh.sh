@@ -57,6 +57,7 @@ function configure_target_ssh {
 
         if [ ! -d /home/"${user}"/.ssh ]; then
             mkdir /home/"${user}"/.ssh
+            chown -R "${user}":"${user}" /home/"${user}"/.ssh
         fi
 
         cat "$public_key_file" >> /home/"${user}"/.ssh/authorized_keys;
@@ -81,6 +82,7 @@ function configure_control_ssh {
     then
         if [ ! -d /home/"${user}"/.ssh ]; then
             mkdir /home/"${user}"/.ssh
+            chown -R "${user}":"${user}" /home/"${user}"/.ssh
         fi
         
         log "installing the private key to /home/${user}/.ssh/"
