@@ -10,14 +10,11 @@
   
 - hosts: appserver
   tasks:
-    - name: debug variables
-      debug: var={{ repo_url }}
-      
     - name: checkout repo from git
       git: 
         clone: yes
-        dest: "{{ working_dir }}"
-        repo: "{{ repo_url }}"
+        dest: '{{ working_dir }}'
+        repo: '{{ repo_url }}'
         accept_hostkey: yes
       register: checkout_completed
 
