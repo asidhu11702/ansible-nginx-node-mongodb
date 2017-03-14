@@ -92,12 +92,10 @@ function configure_control_ssh {
         chmod 600 /home/"${user}"/.ssh/"${private_key_file}"
 
         rm "${private_key_file}"
-
-        log "private key deployed, restarting ssh."
-
+        su ${user}
         eval `ssh-agent -s`
-
         ssh-add /home/"${user}"/.ssh/"${private_key_file}"
+        echo ssh-add -l
     else
         log "$private_key_file was not found in the current directory.  exiting."
         exit 1
