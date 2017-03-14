@@ -12,13 +12,35 @@ In future sessions, we will hook up a CI pipeline to automatically deploy the no
 
 ## How to deploy ##
 
-For convenience, I have copied the arm templates and custom script extension from the [custom script extensions repo](https://bitbucket.org/architech/azure-custom-script-extensions).  I did modify them slightly to support CentOS, and as the Azure CentOS distro already comes with Ansible installed, there is no need to install it. 
+For convenience, I have copied the arm templates and custom script extension from the [custom script extensions repo](https://bitbucket.org/architech/azure-custom-script-extensions).  I did modify them slightly to support CentOS.
 
 1. First deploy the ARM templates.  See [here](https://bitbucket.org/architech/azure-custom-script-extensions) for instructions.
 2. Set up ssh authenication with BitBucket.  Use the same public key that you use to deploy the ARM template.  This is very important or you will not be able to authenticate with Bitbucket. See [here](https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html) for instructions.
 2. Once the infra has been provisioned, log onto the jumpboxVm which will be our Ansible control machine.
-3. git will already be installed on all the host machines, and the playbooks will have been pulled from Bitbucket.
-4. cd into playbooks 
+3. start up ssh-agent and add the private key.  This is required for the appVms to be able to authenticate with BitBucket to clone the repo and start up the node app.  In the future, I will enhance the extension script to modify .bashrc to start up the ssh-agent and shut it down with each login/logout.
+
+```
+#start up ssh-agent
+exec /usr/bin/ssh-agent $SHELL
+
+#add the private key provisioned by the extension
+ssh-add ~/.ssh/id_rsa
+
+#list the keys added to verify that it is there.
+ssh-add -l 
+```
+4. git will already be installed on all the host machines, and pull the playbooks from Bitbucket.  
+5. cd into playbooks directory and execute the following commands.
+
+```
+#this will list all the tasks that will be executed and verify the playbook
+ansible-playbook --list-tasks configure_all.yml 
+
+#this will 
+ansible-playbook configure_all.yml --ask-sudo-pass
+```
+
+For more information see the [README](./playbooks/README.md) in the playbooks directory.
 
 ## DISCLAIMER ##
 
