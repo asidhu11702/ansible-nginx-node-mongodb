@@ -1,7 +1,7 @@
 # Notes #
 
 1. These playbooks have only been tested on CentOS 7.  They may work on RHEL.  They won't work on other distros.
-2. In order to install some of the tools, you need to add the epel-release and ius repos.  I have added these as *dependencies*. See [common/meta/main.yml](,/common/meta/main.yml) as an example.  This is because the CentOS and RHEL repos do not contain some the latest versions of tools we need. 
+2. In order to install some of the tools, you need to add the epel-release and ius repos.  I have added these as *dependencies*. See [./common/meta/main.yml](,/common/meta/main.yml) as an example.  This is because the CentOS and RHEL repos do not contain some the latest versions of tools we need. 
 3. The plays are organized into what are called "roles".  Roles are very helpful to create re-usable Ansible plays. There is a command line tool called *ansible-galaxy* that comes with Ansible that helps you scaffold the directory structure and files for a role.  See [here](http://docs.ansible.com/ansible/playbooks_roles.html) for details.
 4. You will see that there is a pattern of roles depending on other roles.  This enables us to compose playbooks from reusable roles.  However, this does make things a bit difficult to understand exactly what is happening at first.  However, start from the top and navigate through the dependencies.
 4. Note, I have a *common* role.  These contains tasks that are "common" across all hosts.  Not sure if we should do this as pre-tasks but this seems to be a common (excuse the pun) pattern.
