@@ -10,6 +10,9 @@
   
 - hosts: appserver
   tasks:
+    - name: debug variables
+      debug: var={{ repo_url }}
+      
     - name: checkout repo from git
       git: 
         clone: yes
