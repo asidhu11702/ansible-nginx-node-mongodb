@@ -1,5 +1,6 @@
 ---
 - name: add mongoDB repository
+  become: yes
   yum_repository:
     name: "{{ mongodb_repo_name }}"
     description: "{{ mongodb_repo_description }}"

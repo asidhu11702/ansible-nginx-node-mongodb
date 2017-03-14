@@ -1,5 +1,6 @@
 ---
 - name: add IUS repository
+  become: yes
   yum: 
     name: "{{ ius_rpm_url }}"
     state: present

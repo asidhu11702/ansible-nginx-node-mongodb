@@ -1,5 +1,6 @@
 ---
 - name: install mongodb
+  become: yes
   yum: name={{ item }} state=present update_cache=yes
   with_items:
     - python-pip

@@ -29,6 +29,6 @@
       command: pm2 start -f index.js chdir={{ working_dir }}/app 
 
   roles: 
-    - { role: common }
-    - { role: nodejs }
-    - { role: nginx }
+    - { role: common, become: yes }
+    - { role: nodejs, become: yes }
+    - { role: nginx, become: yes }
