@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: 'centos-epel-repo', when: ansible_os_family == 'RedHat' }

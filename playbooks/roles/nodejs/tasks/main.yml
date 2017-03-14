@@ -1,0 +1,14 @@
+---  
+- name: install node
+  yum: name={{ item }} state=present update_cache=yes
+  with_items:
+    - nodejs
+    - npm
+
+- name: install pm2
+  become: yes
+  npm: 
+    global: yes
+    name: pm2@latest
+    state: present
+  

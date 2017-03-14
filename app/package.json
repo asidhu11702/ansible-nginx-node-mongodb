@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Test node app to demo ansible config management",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Jungho Kim",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^1.25.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.24",
+    "winston": "^2.3.1"
+  }
+}

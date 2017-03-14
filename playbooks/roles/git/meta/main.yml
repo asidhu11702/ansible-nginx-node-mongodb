@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: 'centos-ius-repo', when: ansible_os_family == 'Redhat' }

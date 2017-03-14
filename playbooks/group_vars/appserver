@@ -1,0 +1,3 @@
+---
+working_dir: /home/jungho/test
+repo_url: "git@bitbucket.org:jungho_kim/ansible-nginx-node-mongodb.git"

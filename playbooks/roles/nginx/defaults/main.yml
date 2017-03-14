@@ -1,0 +1,4 @@
+---
+nginx_config_dir: /etc/nginx
+proxy_pass_appserver: http://localhost:8080
+nginx_user: www-data

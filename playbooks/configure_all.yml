@@ -1,0 +1,34 @@
+---
+- hosts: control
+  roles: 
+    - { role: common }
+
+- hosts: database
+  roles: 
+    - { role: common }
+    - { role: mongodb }
+  
+- hosts: appserver
+  tasks:
+    - name: checkout repo from git
+      git: 
+        clone: yes
+        dest: "{{ working_dir }}"
+        repo: "{{ repo_url }}"
+        accept_hostkey: yes
+      register: checkout_completed
+
+    - name: install npm packages for application
+      npm: 
+        path: "{{ working_dir }}/app"
+        production: yes
+      when: checkout_completed.changed 
+
+    - name: start node app with pm2
+      become: yes
+      command: pm2 start -f index.js chdir={{ working_dir }}/app 
+
+  roles: 
+    - { role: common }
+    - { role: nodejs }
+    - { role: nginx }

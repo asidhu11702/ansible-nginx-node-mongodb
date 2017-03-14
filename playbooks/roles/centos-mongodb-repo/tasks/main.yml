@@ -1,0 +1,10 @@
+---
+- name: add mongoDB repository
+  yum_repository:
+    name: "{{ mongodb_repo_name }}"
+    description: "{{ mongodb_repo_description }}"
+    baseurl: "{{ mongodb_repo_baseurl }}"
+    gpgkey: "{{ mongodb_repo_gpgkey }}"
+    gpgcheck: yes
+    enabled: yes
+    state: present

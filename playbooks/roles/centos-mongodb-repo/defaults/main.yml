@@ -1,0 +1,6 @@
+---
+#mongoDB repo variables to install mongoDB modules
+mongodb_repo_name: MongoDB-Repository
+mongodb_repo_description: MongoDB 3.4 repository
+mongodb_repo_baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+mongodb_repo_gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc

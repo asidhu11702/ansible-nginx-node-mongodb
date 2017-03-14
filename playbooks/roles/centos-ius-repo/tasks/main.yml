@@ -1,0 +1,6 @@
+---
+- name: add IUS repository
+  yum: 
+    name: "{{ ius_rpm_url }}"
+    state: present
+    update_cache: yes

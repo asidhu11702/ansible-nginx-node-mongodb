@@ -1,0 +1,20 @@
+{
+    "Env": {
+        "database": {
+            "host": {{ db_host }},
+            "port": {{ db_post }},
+            "name": {{ db_name }}
+        }, 
+        "node": {
+            "listen_port": {{ node_listen_port }}
+        }
+    },
+    "App": {
+        "configA": "configA value",
+        "configB": {
+            "value": "configB value",
+            "description": "description of configB"
+        }, 
+        "start_message": "Ansible Rocks!"
+    }
+}

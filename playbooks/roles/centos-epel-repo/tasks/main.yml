@@ -1,0 +1,6 @@
+---
+- name: add EPEL repository
+  yum:
+    name: epel-release
+    state: present
+    update_cache: yes

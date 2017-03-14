@@ -1,0 +1,17 @@
+---
+- name: install mongodb
+  yum: name={{ item }} state=present update_cache=yes
+  with_items:
+    - python-pip
+    - mongodb-org-server
+    - mongodb-org-tools
+    - mongodb-org-shell
+  notify: 
+    - restart mongodb
+
+#I do this after to ensure python-pip was installed
+- name: install pymongo
+  yum: name={{ item }} state=present update_cache=yes
+  with_items:
+    - pymongo
+

@@ -1,0 +1,4 @@
+---
+#database host variables
+db_host: dbVm1
+db_port: 27017
