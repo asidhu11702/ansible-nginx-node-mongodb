@@ -63,10 +63,13 @@ function configure_target_ssh {
         fi
 
         cat "$public_key_file" >> /home/"${user}"/.ssh/authorized_keys;
+        chown -R "${user}":"${user}" /home/"${user}"/.ssh/authorized_keys
+        
         rm "$public_key_file"
         chmod 700 /home/"${user}"/.ssh
         chmod 600 /home/"${user}"/.ssh/authorized_keys
         
+
         log "public key deployed"
     else
         log "$public_key_file was not found in the current directory.  exiting."
@@ -83,6 +86,7 @@ function configure_control_ssh {
         if [ ! -d /home/"${user}"/.ssh ]; then
             mkdir /home/"${user}"/.ssh
             chown -R "${user}":"${user}" /home/"${user}"/.ssh
+            
         fi
         
         log "installing the private key to /home/${user}/.ssh/"
@@ -90,6 +94,8 @@ function configure_control_ssh {
         cat "${private_key_file}" >> /home/"${user}"/.ssh/"${private_key_file}"
         chmod 700 /home/"${user}"/.ssh
         chmod 600 /home/"${user}"/.ssh/"${private_key_file}"
+        chown -R "${user}":"${user}" /home/"${user}"/.ssh/id_rsa
+        chown -R "${user}":"${user}" /home/"${user}"/.ssh/authorized_keys
 
         log "installed the privated key."
     else
