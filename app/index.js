@@ -2,6 +2,7 @@ var logger = require('winston');
 var express = require('express');
 var config = require('config');
 var mongodb = require('mongodb');
+var os = require('os');
 
 var app = express();
 var url = 'mongodb://' + 
@@ -23,7 +24,7 @@ app.get('/', function(req, res){
         db.close();
     });
 
-    res.send(config.get('App.start_message') + '\n');
+    res.send(config.get('App.start_message') + 'from ' + os.hostname() + '\n');
 });
 
 const port = config.get("Env.node.listen_port");
