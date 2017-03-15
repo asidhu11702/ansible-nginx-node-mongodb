@@ -1,3 +1,4 @@
 ---
+app_user: architech
 working_dir: /home/architech/app
 repo_url: git@bitbucket.org:architech/ansible-nginx-node-mongodb.git
