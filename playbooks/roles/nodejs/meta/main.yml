@@ -1,3 +1,4 @@
 ---
 dependencies:
   - { role: 'centos-epel-repo', when: ansible_os_family == 'RedHat' }
+  - { role: 'git', when: ansible_os_family == 'RedHat' }
