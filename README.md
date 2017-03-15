@@ -36,7 +36,7 @@ ssh-add -l
 #this will list all the tasks that will be executed and verify the playbook
 ansible-playbook --list-tasks configure_all.yml 
 
-#this will 
+#this will execute the playbook against all hosts targeted in the playbook
 ansible-playbook configure_all.yml --ask-sudo-pass
 ```
 

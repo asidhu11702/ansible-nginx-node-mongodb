@@ -65,9 +65,7 @@ function configure_target_ssh {
         chmod 700 /home/"${user}"/.ssh
         chmod 600 /home/"${user}"/.ssh/authorized_keys
         
-        log "public key deployed, restarting ssh..."
-        
-        log "ssh restarted."
+        log "public key deployed"
     else
         log "$public_key_file was not found in the current directory.  exiting."
         exit 1
@@ -91,15 +89,15 @@ function configure_control_ssh {
         chmod 700 /home/"${user}"/.ssh
         chmod 600 /home/"${user}"/.ssh/"${private_key_file}"
 
-        rm "${private_key_file}"
-        su ${user}
-        eval `ssh-agent -s`
-        ssh-add /home/"${user}"/.ssh/"${private_key_file}"
-        echo ssh-add -l
+        log "installed the privated key."
     else
         log "$private_key_file was not found in the current directory.  exiting."
         exit 1
     fi
+}
+
+function configures_ssh_agent {
+    cat start_up_ssh_agent_on_boot.sh >> .bashrc
 }
 
 host_type=''
