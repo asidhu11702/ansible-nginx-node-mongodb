@@ -98,14 +98,15 @@ function configure_control_ssh {
 
 function install_ansible {
     log "installing epel-release and ansible."
-    sudo yum install epel-release -y
-    sudo yum install ansible -y
+    yum install epel-release -y
+    yum install ansible -y
     log "ansible installed."
 }
 
 function install_git {
     log "installing git on the control machine."
-    sudo yum install git -y
+    yum install git -y
+    log "git installed"
 }
 
 host_type=''
