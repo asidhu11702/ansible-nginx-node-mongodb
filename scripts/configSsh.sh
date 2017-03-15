@@ -105,7 +105,7 @@ function install_ansible {
 
 function install_git {
     log "installing git on the control machine."
-    sudo yum install git
+    sudo yum install git -y
 }
 
 host_type=''
