@@ -26,7 +26,7 @@
 
     - name: start node app with pm2
       become: yes
-      command: pm2 start -f index.js chdir={{ working_dir }}
+      command: pm2 start -f index.js chdir={{ working_dir }}/app
 
   roles: 
     - { role: common, become: yes }
