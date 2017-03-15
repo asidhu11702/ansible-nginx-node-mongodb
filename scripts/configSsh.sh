@@ -96,6 +96,18 @@ function configure_control_ssh {
     fi
 }
 
+function install_ansible {
+    log "installing epel-release and ansible."
+    sudo yum install epel-release -y
+    sudo yum install ansible -y
+    log "ansible installed."
+}
+
+function install_git {
+    log "installing git on the control machine."
+    sudo yum install git
+}
+
 host_type=''
 user=''
 public_key_file=''
@@ -131,4 +143,6 @@ done
 
 validate_parameters
 configure_ssh
+install_ansible
+install_git
 
