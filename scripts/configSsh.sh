@@ -96,10 +96,6 @@ function configure_control_ssh {
     fi
 }
 
-function configures_ssh_agent {
-    cat start_up_ssh_agent_on_boot.sh >> .bashrc
-}
-
 host_type=''
 user=''
 public_key_file=''
