@@ -20,13 +20,13 @@
 
     - name: install npm packages for application
       npm: 
-        path: "{{ working_dir }}/app"
+        path: '{{ working_dir }}'
         production: yes
       when: checkout_completed.changed 
 
     - name: start node app with pm2
       become: yes
-      command: pm2 start -f index.js chdir={{ working_dir }}/app 
+      command: pm2 start -f index.js chdir={{ working_dir }}
 
   roles: 
     - { role: common, become: yes }

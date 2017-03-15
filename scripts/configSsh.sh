@@ -41,10 +41,12 @@ function validate_parameters {
     fi
 }
 
-function configure_ssh {
+function configure_hosts {
     if [ "$host_type" == "control" ]
     then
         configure_control_ssh
+        install_ansible
+        install_git
     else
         configure_target_ssh
     fi
@@ -61,13 +63,14 @@ function configure_target_ssh {
         fi
 
         cat "$public_key_file" >> /home/"${user}"/.ssh/authorized_keys;
+        chown -R "${user}":"${user}" /home/"${user}"/.ssh/authorized_keys
+        
         rm "$public_key_file"
         chmod 700 /home/"${user}"/.ssh
         chmod 600 /home/"${user}"/.ssh/authorized_keys
         
-        log "public key deployed, restarting ssh..."
-        
-        log "ssh restarted."
+
+        log "public key deployed"
     else
         log "$public_key_file was not found in the current directory.  exiting."
         exit 1
@@ -83,6 +86,7 @@ function configure_control_ssh {
         if [ ! -d /home/"${user}"/.ssh ]; then
             mkdir /home/"${user}"/.ssh
             chown -R "${user}":"${user}" /home/"${user}"/.ssh
+            
         fi
         
         log "installing the private key to /home/${user}/.ssh/"
@@ -90,16 +94,27 @@ function configure_control_ssh {
         cat "${private_key_file}" >> /home/"${user}"/.ssh/"${private_key_file}"
         chmod 700 /home/"${user}"/.ssh
         chmod 600 /home/"${user}"/.ssh/"${private_key_file}"
+        chown -R "${user}":"${user}" /home/"${user}"/.ssh/id_rsa
+        chown -R "${user}":"${user}" /home/"${user}"/.ssh/authorized_keys
 
-        rm "${private_key_file}"
-        su ${user}
-        eval `ssh-agent -s`
-        ssh-add /home/"${user}"/.ssh/"${private_key_file}"
-        echo ssh-add -l
+        log "installed the privated key."
     else
         log "$private_key_file was not found in the current directory.  exiting."
         exit 1
     fi
+}
+
+function install_ansible {
+    log "installing epel-release and ansible."
+    yum install epel-release -y
+    yum install ansible -y
+    log "ansible installed."
+}
+
+function install_git {
+    log "installing git on the control machine."
+    yum install git -y
+    log "git installed"
 }
 
 host_type=''
@@ -136,5 +151,5 @@ while getopts u:t:k:p:: opt; do
 done
 
 validate_parameters
-configure_ssh
+configure_hosts
 
