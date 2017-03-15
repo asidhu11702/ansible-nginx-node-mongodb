@@ -55,3 +55,4 @@ These are NOT production ready playbooks!!  There is lot more that needs to be d
 4. [Installing Nginx on CentOS](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
 5. [Installing mongoDB on CentOS/Redhat](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/)
 6. [Installing node on CentOS](https://tecadmin.net/install-latest-nodejs-and-npm-on-centos/#)
+7. [Ansible Performance Tuning](https://www.ansible.com/blog/ansible-performance-tuning)
