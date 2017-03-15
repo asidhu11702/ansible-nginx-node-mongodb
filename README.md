@@ -29,7 +29,7 @@ ssh-add ~/.ssh/id_rsa
 #list the keys added to verify that it is there.
 ssh-add -l 
 ```
-4. git will already be installed on all the host machines, and pull the playbooks from Bitbucket.  
+4. git will already be installed on all the host machines, pull the playbooks from Bitbucket.  
 5. cd into playbooks directory and execute the following commands.
 
 ```
@@ -37,7 +37,8 @@ ssh-add -l
 ansible-playbook --list-tasks configure_all.yml 
 
 #this will execute the playbook against all hosts targeted in the playbook
-ansible-playbook configure_all.yml --ask-sudo-pass
+#I have set ask_sudo_pass=true in ansible.cfg
+ansible-playbook configure_all.yml
 ```
 
 For more information see the [README](./playbooks/README.md) in the playbooks directory.
