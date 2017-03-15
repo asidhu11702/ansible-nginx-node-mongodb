@@ -41,10 +41,12 @@ function validate_parameters {
     fi
 }
 
-function configure_ssh {
+function configure_hosts {
     if [ "$host_type" == "control" ]
     then
         configure_control_ssh
+        install_ansible
+        install_git
     else
         configure_target_ssh
     fi
@@ -143,7 +145,5 @@ while getopts u:t:k:p:: opt; do
 done
 
 validate_parameters
-configure_ssh
-install_ansible
-install_git
+configure_hosts
 
