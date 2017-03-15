@@ -37,8 +37,7 @@ ssh-add -l
 ansible-playbook --list-tasks configure_all.yml 
 
 #this will execute the playbook against all hosts targeted in the playbook
-#I have set ask_sudo_pass=true in ansible.cfg
-ansible-playbook configure_all.yml
+ansible-playbook configure_all.yml --ask-sudo-pass
 ```
 
 For more information see the [README](./playbooks/README.md) in the playbooks directory.
