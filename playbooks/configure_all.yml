@@ -20,9 +20,13 @@
 
     - name: install npm packages for application
       npm: 
-        path: '{{ working_dir }}'
+        path: '{{ working_dir }}/app'
         production: yes
       when: checkout_completed.changed 
+    
+    - name: configure pm2 as a service
+      become: yes
+      command: 'pm2 startup systemd -u {{ app_user }} --hp /home/{{ app_user }}'
 
     - name: start node app with pm2
       become: yes
