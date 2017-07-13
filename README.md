@@ -1,10 +1,10 @@
 # Deploying nginx, node, mongoDB using Ansible #
 
-In this example, we build on top of the solution where we deployed Ansible to a Linux cluster using custom script extensions.  You can see that solution [here.](https://bitbucket.org/architech/azure-custom-script-extensions).  Note, going forward we will be using the CentOS distro as that is what we will be using for all projects.
+In this example, we build on top of the solution where we deployed Ansible to a Linux cluster using custom script extensions.  You can see that solution [here.](https://github.com/jungho/azure-custom-script-extensions).  Note, going forward we will be using the CentOS distro as that is what we will be using for all projects.
 
 Now that ssh authentication has been configured across the control and target hosts, we are now going to demonstrate the following:
 
-1. setting up ssh authentication with Bitbucket.  This is required to checkout the playbooks and the node application we are going to deploy. 
+1. setting up ssh authentication with Bitbucket or Github.  This is required to checkout the playbooks and the node application we are going to deploy. 
 2. use Ansible to configure nginx, node, and mongoDB on the target host machines.
 3. Deploy the node app and run a simple test to demonstrate that everything is working ok.
 
@@ -12,12 +12,12 @@ In future sessions, we will hook up a CI pipeline to automatically deploy the no
 
 ## How to deploy ##
 
-For convenience, I have copied the arm templates and custom script extension from the [custom script extensions repo](https://bitbucket.org/architech/azure-custom-script-extensions).  I did modify them slightly to support CentOS.
+For convenience, I have copied the arm templates and custom script extension from the [custom script extensions repo](https://github.com/jungho/azure-custom-script-extensions).  I did modify them slightly to support CentOS.
 
-1. First deploy the ARM templates.  See [here](https://bitbucket.org/architech/azure-custom-script-extensions) for instructions.
-2. Set up ssh authenication with BitBucket.  Use the same public key that you use to deploy the ARM template.  This is very important or you will not be able to authenticate with Bitbucket. See [here](https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html) for instructions.
+1. First deploy the ARM templates.  See [here](https://github.com/jungho/azure-custom-script-extensions) for instructions.
+2. Set up ssh authenication with Github or Bitbucket.  Use the same public key that you use to deploy the ARM template.  This is very important or you will not be able to authenticate with Bitbucket. See [here](https://confluence.atlassian.com/bitbucket/set-up-ssh-for-git-728138079.html) for instructions.  Instructions for Github is the same.
 2. Once the infra has been provisioned, log onto the jumpboxVm which will be our Ansible control machine.
-3. start up ssh-agent and add the private key.  This is required for the appVms to be able to authenticate with BitBucket to clone the repo and start up the node app.  In the future, I will enhance the extension script to modify .bashrc to start up the ssh-agent and shut it down with each login/logout.
+3. start up ssh-agent and add the private key.  This is required for the appVms to be able to authenticate with BitBucket/Github to clone the repo and start up the node app.  In the future, I will enhance the extension script to modify .bashrc to start up the ssh-agent and shut it down with each login/logout.
 
 ```
 #start up ssh-agent
@@ -29,7 +29,7 @@ ssh-add ~/.ssh/id_rsa
 #list the keys added to verify that it is there.
 ssh-add -l 
 ```
-4. git will already be installed on all the host machines, pull the playbooks from Bitbucket.  
+4. git will already be installed on all the host machines, pull the playbooks from the repo.  
 5. cd into playbooks directory and execute the following commands.
 
 ```
